@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+<section class="section section--themed section--header section--content-center-bottom">
+    <div class="section__hero-content">
+        @if (Model.HasProperty("PageTitle") && Model.HasValue("PageTitle"))
+        {
+            <h1 class="no-air">@Model.GetProperty("PageTitle").GetValue()</h1>
+        }
+        else
+        {
+            <h1 class="no-air">@Model.Name</h1>
+        }
+
+    </div>
+</section>

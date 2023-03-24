@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<UmbracoTutorial.ViewModels.ProductListingBlockListViewModel>
+
+    @{
+        <div class="products-container">
+        @if(Model.Products != null && Model.Products.Any())
+        {
+            @foreach (var product in Model.Products)
+            {
+                <strong>@product.id | @product.name</strong>
+                <img src="@product.imageUrl" />
+            }            
+        }
+
+        </div>
+    }

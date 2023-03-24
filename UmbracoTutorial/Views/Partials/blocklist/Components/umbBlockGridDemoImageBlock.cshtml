@@ -1,0 +1,9 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+
+@{
+    var content = (UmbracoTutorial.Core.UmbracoModels.UmbBlockGridDemoImageBlock)Model.Content;
+}
+
+<div class="container-image">
+    <img src="@content.Image.Url()" alt="@content.AlternativeText" />
+</div>

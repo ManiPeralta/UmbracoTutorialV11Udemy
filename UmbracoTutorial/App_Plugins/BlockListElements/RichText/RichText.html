@@ -1,0 +1,23 @@
+﻿<style>
+    .text {
+        position: relative;
+        display: block;
+        cursor: pointer;
+        line-height: 1.5;
+        font-family: 'Lato';
+        margin: 20px 0;
+        font-weight: 300;
+    }
+</style>
+<div ng-controller="richtextController as vm" ng-click="block.edit()" class="blockelement__draggable-element">
+
+    <div class="text" ng-bind-html="vm.richTextContent" ng-click="block.edit()" style="background-color:#{{ vm .backgroundColor }}">
+    </div>
+
+</div>
+
+<!-- this is suffficient to get the block list working nicely, but you can modify further to add settings too -->
+<!--<div class="text blockelement__draggable-element" ng-bind-html="block.data.richText" ng-click="block.edit()">
+</div>-->
+<!--blockelement__draggable-element: allows the content on the back-office to be dragable
+block.edit(): makes the view editable-->
