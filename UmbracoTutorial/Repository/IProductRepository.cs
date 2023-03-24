@@ -11,6 +11,8 @@ namespace UmbracoTutorial.Repository
 
         Product Create(ProductCreationItem product);
 
+        Product Update(int id, ProductUpdateItem product);
+
         bool Delete(int Id);
     }
 }

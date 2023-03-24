@@ -26,7 +26,14 @@ namespace UmbracoTutorial.Repository
         private readonly MediaUrlGeneratorCollection _mediaUrlGenerator;
         private readonly IContentTypeBaseServiceProvider _contentTypeBaseServiceProvider;
 
-        private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
+        private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor; 
+        
+        private string _productNameAlias = string.Empty;
+        private string _productPriceAlias = string.Empty;
+        private string _productCategoriesAlias = string.Empty;
+        private string _productDescriptionAlias = string.Empty;
+        private string _productSKUAlias = string.Empty;
+        private string _productPhotoAlias = string.Empty;
 
         public ProductRepository(IUmbracoContextFactory umbracoContextFactory, 
             IContentService contentService,
@@ -115,23 +122,67 @@ namespace UmbracoTutorial.Repository
 
             var productContent = _contentService.Create(product.ProductName, productsRoot.Key, Product.ModelTypeAlias);
 
-            var productNameAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.ProductName).Alias;
-            var productPriceAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Price).Alias;
-            var productCategoriesAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Category).Alias;
-            var productDescriptionAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Description).Alias;
-            var productSKUAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Sku).Alias;
-            var productPhotoAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Photos).Alias;
+            //var productNameAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.ProductName).Alias;
+            //var productPriceAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Price).Alias;
+            //var productCategoriesAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Category).Alias;
+            //var productDescriptionAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Description).Alias;
+            //var productSKUAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Sku).Alias;
+            //var productPhotoAlias = Product.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Photos).Alias;
 
-            productContent.SetValue(productNameAlias, product.ProductName);
-            productContent.SetValue(productPriceAlias, product.Price);
-            productContent.SetValue(productCategoriesAlias, string.Join(",", product.Categories));
-            productContent.SetValue(productDescriptionAlias, product.Description);
-            productContent.SetValue(productSKUAlias, product.SKU);
-            productContent.SetValue(productPhotoAlias, productImage);
+            productContent.SetValue(_productNameAlias, product.ProductName);
+            productContent.SetValue(_productPriceAlias, product.Price);
+            productContent.SetValue(_productCategoriesAlias, string.Join(",", product.Categories));
+            productContent.SetValue(_productDescriptionAlias, product.Description);
+            productContent.SetValue(_productSKUAlias, product.SKU);
+            productContent.SetValue(_productPhotoAlias, productImage);
 
             _contentService.Save(productContent);
 
             return Get(productContent.Id);
+        }
+
+        public Product Update(int id, ProductUpdateItem product)
+        {
+            var productContent = _contentService.GetById(id);
+
+            if (!string.IsNullOrEmpty(product.ProductName))
+            {
+                productContent.SetValue(_productNameAlias, product.ProductName);
+            }
+
+            if (product.Price != null)
+            {
+                productContent.SetValue(_productPriceAlias, product.Price);
+            }
+
+            if (product.Categories != null && product.Categories.Any())
+            {
+                productContent.SetValue(_productCategoriesAlias, string.Join(",", product.Categories));
+            }
+
+            if (!string.IsNullOrEmpty(product.Description))
+            {
+                productContent.SetValue(_productDescriptionAlias, product.Description);
+            }
+
+            if (!string.IsNullOrEmpty(product.SKU))
+            {
+                productContent.SetValue(_productSKUAlias, product.SKU);
+            }
+
+            if (!string.IsNullOrEmpty(product.PhotoFileName) && !string.IsNullOrEmpty(product.Photo))
+            {
+                var productImage = CreateProductImage(product.PhotoFileName, product.Photo);
+                if(productImage != null)
+                {
+                    productContent.SetValue(_productPhotoAlias, productImage);
+                }
+
+            }
+
+            _contentService.Save(productContent);
+
+            return Get(id);
         }
 
         private GuidUdi? CreateProductImage(string filename, string photo)
@@ -163,5 +214,6 @@ namespace UmbracoTutorial.Repository
 
             return umbracoMedia.GetUdi();
         }
+
     }
 }
