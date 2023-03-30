@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UmbracoTutorial", "UmbracoTutorial.csproj", "{10600F46-3DCA-488D-8D8E-9E14CE8C8563}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoTutorial.Core", "..\UmbracoTutorial.Core\UmbracoTutorial.Core.csproj", "{47FB6925-EC79-4152-B125-212B8F7C2DEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10600F46-3DCA-488D-8D8E-9E14CE8C8563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10600F46-3DCA-488D-8D8E-9E14CE8C8563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10600F46-3DCA-488D-8D8E-9E14CE8C8563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10600F46-3DCA-488D-8D8E-9E14CE8C8563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47FB6925-EC79-4152-B125-212B8F7C2DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47FB6925-EC79-4152-B125-212B8F7C2DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47FB6925-EC79-4152-B125-212B8F7C2DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47FB6925-EC79-4152-B125-212B8F7C2DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9DCC64A2-ADFC-43EE-890B-BB786FCC9489}
+	EndGlobalSection
+EndGlobal
