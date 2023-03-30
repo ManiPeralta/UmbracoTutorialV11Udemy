@@ -91,7 +91,7 @@ StyleCopReport.xml
 *.tlh
 *.tmp
 *.tmp_proj
-*_wpftmp.csproj
+#*_wpftmp.csproj
 *.log
 *.vspscc
 *.vssscc
@@ -187,7 +187,7 @@ publish/
 # Note: Comment the next line if you want to checkin your web deploy settings,
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
-*.publishproj
+#*.publishproj
 
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
@@ -458,8 +458,8 @@ $RECYCLE.BIN/
 ##
 
 # JSON schema files for appsettings.json
-appsettings-schema.json
-appsettings-schema.*.json
+#appsettings-schema.json
+#appsettings-schema.*.json
 
 # Packages created from the backoffice (package.xml/package.zip)
 /umbraco/Data/CreatedPackages/
